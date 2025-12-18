@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Survey on Housing Needs and Ideal Floor Plan Design</title>
+  <title>Housing Survey & Floorplan Design</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { 
@@ -18,55 +18,52 @@
       height: 100vh;
     }
 
-    /* Survey Panel Styles */
+    /* Survey Panel - 35% */
     .survey-panel {
-      flex: 1;
+      width: 35%;
+      flex-shrink: 0;
       overflow-y: auto;
       background: #fff;
-      border-right: 1px solid #ddd;
+      border-right: 2px solid #ddd;
     }
 
     .survey-content {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 40px 20px;
+      padding: 30px 20px;
     }
 
     .survey-header {
       background: #6c3fb5;
       color: white;
-      padding: 24px;
+      padding: 20px;
       border-radius: 8px 8px 0 0;
-      margin-bottom: 0;
     }
 
     .survey-header h1 {
-      font-size: 28px;
-      margin-bottom: 12px;
+      font-size: 20px;
       line-height: 1.3;
     }
 
     .survey-description {
       background: white;
-      padding: 24px;
+      padding: 16px;
       border-radius: 0 0 8px 8px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       border: 1px solid #ddd;
-      line-height: 1.6;
+      font-size: 11px;
+      line-height: 1.5;
       color: #333;
-      font-size: 14px;
     }
 
     .section {
       background: white;
-      padding: 24px;
-      margin-bottom: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
       border-radius: 8px;
       border: 1px solid #ddd;
     }
 
     .section-title {
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 600;
       color: #202124;
       margin-bottom: 8px;
@@ -74,13 +71,13 @@
 
     .section-description {
       color: #5f6368;
-      margin-bottom: 20px;
-      line-height: 1.5;
-      font-size: 13px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      line-height: 1.4;
     }
 
     .question {
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
 
     .question:last-child {
@@ -88,115 +85,89 @@
     }
 
     .question-title {
-      font-size: 14px;
+      font-size: 12px;
       color: #202124;
-      margin-bottom: 12px;
-      line-height: 1.4;
+      margin-bottom: 8px;
+      line-height: 1.3;
     }
 
     .required {
       color: #d93025;
-      margin-left: 4px;
+      margin-left: 2px;
     }
 
     input[type="text"],
-    
     textarea,
     select {
       width: 100%;
-      padding: 10px;
+      padding: 7px;
       border: 1px solid #dadce0;
       border-radius: 4px;
-      font-size: 13px;
+      font-size: 11px;
       font-family: inherit;
     }
 
     input[type="text"]:focus,
-    
     textarea:focus,
     select:focus {
       outline: none;
       border-color: #6c3fb5;
       border-width: 2px;
-      padding: 9px;
+      padding: 6px;
     }
 
     textarea {
       resize: vertical;
-      min-height: 100px;
+      min-height: 70px;
     }
 
     .radio-group,
     .checkbox-group {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 5px;
     }
 
     .radio-option,
     .checkbox-option {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 6px;
     }
 
     input[type="radio"],
     input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       cursor: pointer;
-      margin-top: 2px;
+      margin-top: 1px;
       flex-shrink: 0;
     }
 
     label {
       cursor: pointer;
-      font-size: 13px;
+      font-size: 11px;
       color: #202124;
-      line-height: 1.4;
-    }
-
-    .grid-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
-      font-size: 12px;
-    }
-
-    .grid-table th,
-    .grid-table td {
-      border: 1px solid #dadce0;
-      padding: 6px;
-      text-align: center;
-    }
-
-    .grid-table th {
-      background: #f8f9fa;
-      font-weight: 500;
-    }
-
-    .grid-table td:first-child {
-      text-align: left;
-      background: #f8f9fa;
-      font-weight: 500;
+      line-height: 1.3;
     }
 
     .submit-btn {
       background: #6c3fb5;
       color: white;
       border: none;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 4px;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 500;
       cursor: pointer;
+      width: 100%;
     }
 
     .submit-btn:hover {
       background: #5b33a1;
     }
 
-    /* Tool Panel Styles */
+    /* Tool Panel - 65% */
     .tool-panel {
       flex: 1;
       display: flex;
@@ -205,7 +176,7 @@
     }
 
     .tool-header {
-      padding: 16px 20px;
+      padding: 14px 20px;
       background: #fff;
       border-bottom: 1px solid #ddd;
     }
@@ -217,29 +188,37 @@
 
     .tool-main {
       flex: 1;
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 12px;
+      display: flex;
+      flex-direction: column;
       padding: 12px;
+      gap: 12px;
       overflow: hidden;
+    }
+
+    .tool-top-section {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 12px;
+      flex: 1;
+      min-height: 0;
     }
 
     .tool-panel-left {
       background: #fff;
-      border-radius: 14px;
-      padding: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       overflow-y: auto;
     }
 
     .tool-panel-left h3 {
-      margin: 4px 0 10px 0;
-      font-size: 15px;
+      margin: 0 0 10px 0;
+      font-size: 14px;
     }
 
     .tool-panel-left label {
       display: block;
-      font-size: 12px;
+      font-size: 11px;
       margin-bottom: 4px;
       font-weight: 500;
     }
@@ -249,37 +228,39 @@
     .tool-panel-left input[type="text"] {
       width: 100%;
       padding: 6px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       border: 1px solid #ddd;
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .tool-panel-right {
       background: #fff;
-      border-radius: 14px;
+      border-radius: 12px;
       padding: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
+      min-height: 0;
     }
 
     .instruction-bar {
-      font-size: 12px;
+      font-size: 11px;
       color: #555;
-      background: #f0f0f0;
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
+      background: #e8f4f8;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #90caf9;
       line-height: 1.4;
     }
 
     .canvas {
       position: relative;
       flex: 1;
-      min-height: 360px;
-      border: 1px solid #ccc;
+      min-height: 350px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
       background:
         linear-gradient(#e0e0e0 1px, transparent 1px),
         linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
@@ -287,16 +268,51 @@
       overflow: hidden;
     }
 
+    .notes-section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .notes-section h3 {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #202124;
+    }
+
+    .notes-section textarea {
+      flex: 1;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #dadce0;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: inherit;
+      resize: none;
+      line-height: 1.4;
+    }
+
+    .notes-section textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      border-width: 2px;
+      padding: 9px;
+    }
+
     .compass {
       position: absolute;
       top: 10px;
       right: 10px;
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border: 2px solid #555;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       z-index: 20;
     }
 
@@ -307,15 +323,15 @@
       color: #333;
     }
 
-    .north { top: 4px; left: 50%; transform: translateX(-50%); }
+    .north { top: 3px; left: 50%; transform: translateX(-50%); }
     .east { right: 4px; top: 50%; transform: translateY(-50%); }
-    .south { bottom: 4px; left: 50%; transform: translateX(-50%); }
+    .south { bottom: 3px; left: 50%; transform: translateX(-50%); }
     .west { left: 4px; top: 50%; transform: translateY(-50%); }
 
     .person-icon {
       position: absolute;
-      width: 35px;
-      height: 45px;
+      width: 30px;
+      height: 40px;
       cursor: move;
       z-index: 18;
       user-select: none;
@@ -323,37 +339,41 @@
 
     .canvas-shape {
       position: absolute;
-      border: 1px solid rgba(0,0,0,0.3);
+      border: 2px solid rgba(0,0,0,0.4);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 11px;
+      font-size: 10px;
+      font-weight: 500;
       cursor: move;
       user-select: none;
       padding: 3px;
       text-align: center;
       word-wrap: break-word;
+      border-radius: 3px;
     }
 
     .canvas-shape.selected {
-      box-shadow: 0 0 0 2px #1d4ed8;
+      box-shadow: 0 0 0 3px #2563eb;
     }
 
     .btn {
       padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 12px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 500;
       cursor: pointer;
-      border: 1px solid #ccc;
+      border: 1px solid #dadce0;
       background: #fff;
       width: 100%;
+      transition: all 0.2s;
     }
 
     .btn-primary {
       background: #2563eb;
       color: white;
       border-color: #2563eb;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .btn-primary:hover {
@@ -364,16 +384,20 @@
       background: #f5f5f5;
     }
 
-    .tool-output {
-      width: 100%;
-      height: 100px;
-      padding: 8px;
-      font-size: 10px;
-      background: #fafafa;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-family: monospace;
-      resize: none;
+    .btn-danger {
+      background: #dc2626;
+      color: white;
+      border-color: #dc2626;
+    }
+
+    .btn-danger:hover {
+      background: #b91c1c;
+    }
+
+    hr {
+      margin: 12px 0;
+      border: none;
+      border-top: 1px solid #e0e0e0;
     }
   </style>
 </head>
@@ -388,22 +412,9 @@
       </div>
 
       <div class="survey-description">
-        <p>This study aims to explore how people describe their ideal home layout and how these preferences can be represented through spatial design. Your responses—including textual descriptions and a simple drag-and-drop floor-plan task—will help us better understand individual housing needs and spatial reasoning.</p>
+        <p>This study explores ideal home layouts through textual descriptions and spatial design. The survey takes approximately 20-25 minutes.</p>
         <br>
-        <p><strong>The survey includes several sections covering:</strong></p>
-        <ul style="margin-left: 20px; margin-top: 8px;">
-          <li>Basic background information</li>
-          <li>Your housing preferences</li>
-          <li>A detailed description of your ideal one-story home</li>
-          <li>A floor-plan creation task using the tool on the right side</li>
-        </ul>
-        <br>
-        <p>Please answer each question sincerely and thoughtfully. There are no right or wrong answers—only your personal preferences. The entire survey will take approximately 20-25 minutes.</p>
-        <br>
-        <p>All responses will remain anonymous. No personally identifiable information will be collected. The data will be used solely for academic research.</p>
-        <br>
-        <p>If you have any questions about the study, please feel free to contact the researcher:</p>
-        <p style="margin-top: 8px;"><strong>Yoonjae Hong</strong><br>KAIST IBD Lab.<br>Email: ghdjojo6@kaist.ac.kr</p>
+        <p><strong>Contact:</strong> Yoonjae Hong, KAIST IBD Lab. (ghdjojo6@kaist.ac.kr)</p>
       </div>
 
       <form id="surveyForm">
@@ -411,66 +422,51 @@
         <!-- Housing Information Section -->
         <div class="section">
           <div class="section-title">Housing Information</div>
-          <div class="section-description">For each question, please choose an option or provide a response that best describes your current living situation.</div>
 
           <div class="question">
             <div class="question-title">How many people are in your household? <span class="required">*</span></div>
             <div class="radio-group">
-              <div class="radio-option"><input type="radio" name="household" value="1" required><label>1 person (Single-person household)</label></div>
+              <div class="radio-option"><input type="radio" name="household" value="1" required><label>1 person</label></div>
               <div class="radio-option"><input type="radio" name="household" value="2"><label>2 people</label></div>
               <div class="radio-option"><input type="radio" name="household" value="3"><label>3 people</label></div>
               <div class="radio-option"><input type="radio" name="household" value="4"><label>4 people</label></div>
-              <div class="radio-option"><input type="radio" name="household" value="5"><label>5 people</label></div>
-              <div class="radio-option"><input type="radio" name="household" value="6"><label>6 people</label></div>
-              <div class="radio-option"><input type="radio" name="household" value="7"><label>7 people</label></div>
-              <div class="radio-option"><input type="radio" name="household" value="8+"><label>8 people or more</label></div>
+              <div class="radio-option"><input type="radio" name="household" value="5+"><label>5+ people</label></div>
             </div>
           </div>
 
           <div class="question">
-            <div class="question-title">What is your current city of residence? (e.g., London) <span class="required">*</span></div>
+            <div class="question-title">Current city of residence? <span class="required">*</span></div>
             <input type="text" name="city" required placeholder="e.g., London">
           </div>
 
           <div class="question">
-            <div class="question-title">How much is your monthly rent? <span class="required">*</span></div>
+            <div class="question-title">Monthly rent? <span class="required">*</span></div>
             <div class="radio-group">
               <div class="radio-option"><input type="radio" name="rent" value="<500" required><label>Less than £500</label></div>
-              <div class="radio-option"><input type="radio" name="rent" value="500-799"><label>£500~£799</label></div>
-              <div class="radio-option"><input type="radio" name="rent" value="800-999"><label>£800~£999</label></div>
-              <div class="radio-option"><input type="radio" name="rent" value="1000-1299"><label>£1,000~£1,299</label></div>
-              <div class="radio-option"><input type="radio" name="rent" value="1300-1599"><label>£1,300~£1,599</label></div>
-              <div class="radio-option"><input type="radio" name="rent" value="1600-1999"><label>£1,600~£1,999</label></div>
-              <div class="radio-option"><input type="radio" name="rent" value="2000-2499"><label>£2,000~£2,499</label></div>
-              <div class="radio-option"><input type="radio" name="rent" value="2500+"><label>£2,500 or more</label></div>
+              <div class="radio-option"><input type="radio" name="rent" value="500-999"><label>£500~£999</label></div>
+              <div class="radio-option"><input type="radio" name="rent" value="1000-1499"><label>£1,000~£1,499</label></div>
+              <div class="radio-option"><input type="radio" name="rent" value="1500-1999"><label>£1,500~£1,999</label></div>
+              <div class="radio-option"><input type="radio" name="rent" value="2000+"><label>£2,000+</label></div>
             </div>
           </div>
 
           <div class="question">
-            <div class="question-title">What is the total floor space of your current home? <span class="required">*</span></div>
+            <div class="question-title">Current home floor space? <span class="required">*</span></div>
             <div class="radio-group">
-              <div class="radio-option"><input type="radio" name="current_space" value="<40" required><label>Less than 40 ㎡ (Less than 430 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="current_space" value="40-59"><label>40–59 ㎡ (430–635 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="current_space" value="60-79"><label>60–79 ㎡ (645–850 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="current_space" value="80-99"><label>80–99 ㎡ (860–1,065 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="current_space" value="100-119"><label>100–119 ㎡ (1,075–1,280 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="current_space" value="120-149"><label>120–149 ㎡ (1,290–1,600 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="current_space" value="150-199"><label>150–199 ㎡ (1,615–2,140 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="current_space" value="200+"><label>200 ㎡ or more (2,150 ft² or more)</label></div>
+              <div class="radio-option"><input type="radio" name="current_space" value="<40" required><label>&lt;40㎡ (&lt;430ft²)</label></div>
+              <div class="radio-option"><input type="radio" name="current_space" value="40-79"><label>40–79㎡ (430–850ft²)</label></div>
+              <div class="radio-option"><input type="radio" name="current_space" value="80-119"><label>80–119㎡ (860–1,280ft²)</label></div>
+              <div class="radio-option"><input type="radio" name="current_space" value="120+"><label>120+㎡ (1,290+ft²)</label></div>
             </div>
           </div>
 
           <div class="question">
-            <div class="question-title">Based on your current living situation, what is the estimated floor area of your <strong>ideal</strong> home? <span class="required">*</span></div>
+            <div class="question-title">Ideal home floor area? <span class="required">*</span></div>
             <div class="radio-group">
-              <div class="radio-option"><input type="radio" name="ideal_space" value="<40" required><label>Less than 40 ㎡ (Less than 431 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="ideal_space" value="40-59"><label>40–59 ㎡ (431–635 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="ideal_space" value="60-79"><label>60–79 ㎡ (646–850 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="ideal_space" value="80-99"><label>80–99 ㎡ (861–1,066 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="ideal_space" value="100-119"><label>100–119 ㎡ (1,076–1,281 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="ideal_space" value="120-149"><label>120–149 ㎡ (1,292–1,604 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="ideal_space" value="150-199"><label>150–199 ㎡ (1,615–2,142 ft²)</label></div>
-              <div class="radio-option"><input type="radio" name="ideal_space" value="200+"><label>200 ㎡ or more (2,153 ft² or more)</label></div>
+              <div class="radio-option"><input type="radio" name="ideal_space" value="<40" required><label>&lt;40㎡ (&lt;431ft²)</label></div>
+              <div class="radio-option"><input type="radio" name="ideal_space" value="40-79"><label>40–79㎡ (431–850ft²)</label></div>
+              <div class="radio-option"><input type="radio" name="ideal_space" value="80-119"><label>80–119㎡ (861–1,281ft²)</label></div>
+              <div class="radio-option"><input type="radio" name="ideal_space" value="120+"><label>120+㎡ (1,292+ft²)</label></div>
             </div>
           </div>
         </div>
@@ -478,10 +474,9 @@
         <!-- Room Type Section -->
         <div class="section">
           <div class="section-title">Room Type</div>
-          <div class="section-description">Please provide sincere and thoughtful response to the question below.</div>
 
           <div class="question">
-            <div class="question-title">Select the room types that are <em>necessary</em> for your ideal home. <span class="required">*</span></div>
+            <div class="question-title">Necessary room types? <span class="required">*</span></div>
             <div class="checkbox-group">
               <div class="checkbox-option"><input type="checkbox" name="room_types" value="Living Room"><label>Living Room</label></div>
               <div class="checkbox-option"><input type="checkbox" name="room_types" value="Kitchen"><label>Kitchen</label></div>
@@ -497,38 +492,16 @@
         <!-- Text Response Section -->
         <div class="section">
           <div class="section-title">Text Response</div>
-          <div class="section-description">Please provide sincere and thoughtful response to the question below.</div>
 
           <div class="question">
-            <div class="question-title">Based on your current living situation, please describe the layout of your ideal one-story home. We are interested in how rooms are arranged—such as room types, sizes, adjacencies, and orientations—rather than interior decoration or style. (150–250 words) <span class="required">*</span></div>
-            <textarea name="text_response" required placeholder="Describe your ideal home layout here..."></textarea>
-          </div>
-        </div>
-
-        <!-- Image Response Section -->
-        <div class="section">
-          <div class="section-title">Image Response</div>
-          <div class="section-description">
-            <strong>Instruction:</strong><br>
-            1. Use the <strong>Floorplan Design Tool on the right side</strong> to create your ideal floor plan<br>
-            2. When finished, click the <strong>"Save JSON + PNG"</strong> button<br>
-            3. Upload both files below
-          </div>
-
-          <div class="question">
-            <div class="question-title">Please upload the JSON file <span class="required">*</span></div>
-            <input type="file" name="json_file" accept=".json" required>
-          </div>
-
-          <div class="question">
-            <div class="question-title">Please upload the Image (.png) file <span class="required">*</span></div>
-            <input type="file" name="png_file" accept=".png" required>
+            <div class="question-title">Describe your ideal one-story home layout (150–250 words) <span class="required">*</span></div>
+            <textarea name="text_response" required placeholder="Room arrangements, sizes, adjacencies, orientations..."></textarea>
           </div>
         </div>
 
         <!-- Submit Button -->
         <div class="section">
-          <button type="submit" class="submit-btn">Submit</button>
+          <button type="submit" class="submit-btn">Submit Survey</button>
         </div>
       </form>
     </div>
@@ -537,64 +510,73 @@
   <!-- RIGHT: Floorplan Tool Panel -->
   <div class="tool-panel">
     <header class="tool-header">
-      <div class="tool-header-title">Floorplan Design Tool</div>
+      <div class="tool-header-title">🏠 Floorplan Design Tool</div>
     </header>
 
     <main class="tool-main">
-      <!-- LEFT PANEL -->
-      <section class="tool-panel-left">
-        <h3>Create a Custom Room</h3>
+      <div class="tool-top-section">
+        <!-- LEFT PANEL -->
+        <section class="tool-panel-left">
+          <h3>Create Room</h3>
 
-        <label>Room Type</label>
-        <select id="customRoomType">
-          <option>Living Room</option>
-          <option>Kitchen</option>
-          <option>Dining Room</option>
-          <option>Master Bedroom</option>
-          <option>Guest Bedroom</option>
-          <option>Bathroom</option>
-          <option value="Others">Others</option>
-        </select>
+          <label>Room Type</label>
+          <select id="customRoomType">
+            <option>Living Room</option>
+            <option>Kitchen</option>
+            <option>Dining Room</option>
+            <option>Master Bedroom</option>
+            <option>Guest Bedroom</option>
+            <option>Bathroom</option>
+            <option>Storage</option>
+            <option value="Others">Others</option>
+          </select>
 
-        <div id="labelContainer" style="display:none;">
-          <label>Custom Label</label>
-          <input id="customLabelInput" type="text">
-        </div>
-
-        <label>Width (1 grid unit = 60cm)</label>
-        <input id="customWidth" type="number" min="1" value="10">
-
-        <label>Length (1 grid unit = 60cm)</label>
-        <input id="customHeight" type="number" min="1" value="8">
-
-        <button id="addCustomRoomBtn" class="btn btn-primary">Add Room</button>
-
-        <hr style="margin:16px 0; border:none; border-top:1px solid #ddd;">
-        <button id="clearCanvasBtn" class="btn">Clear Canvas</button>
-        <button id="exportJsonBtn" class="btn btn-primary">Save JSON + PNG</button>
-      </section>
-
-      <!-- RIGHT PANEL -->
-      <section class="tool-panel-right">
-        <div class="instruction-bar">
-          <b>Instruction:</b> Select a room type and enter its size. Drag rooms and person on the canvas to design your floor plan. Use Delete key to remove a room. Save JSON + PNG to download the files.
-        </div>
-
-        <div class="canvas" id="canvas">
-          <!-- Compass -->
-          <div class="compass" id="compass">
-            <div class="north">N</div>
-            <div class="east">E</div>
-            <div class="south">S</div>
-            <div class="west">W</div>
+          <div id="labelContainer" style="display:none;">
+            <label>Custom Label</label>
+            <input id="customLabelInput" type="text" placeholder="Enter name">
           </div>
 
-          <!-- Person icon -->
-          <img id="personIcon" class="person-icon"
-            src="https://raw.githubusercontent.com/Yoonjae-Hong/Survey_ver2/76437d43f2a49ee041422c151b7c6ec6c5576320/Assets/person.png">
-        </div>
+          <label>Width (1 unit = 60cm)</label>
+          <input id="customWidth" type="number" min="1" value="10">
 
-        <textarea id="layoutOutput" class="tool-output" readonly></textarea>
+          <label>Length (1 unit = 60cm)</label>
+          <input id="customHeight" type="number" min="1" value="8">
+
+          <button id="addCustomRoomBtn" class="btn btn-primary">➕ Add Room</button>
+
+          <hr>
+          
+          <button id="clearCanvasBtn" class="btn btn-danger">🗑️ Clear All</button>
+          <button id="exportAllBtn" class="btn btn-primary">💾 Save All Files</button>
+        </section>
+
+        <!-- RIGHT PANEL -->
+        <section class="tool-panel-right">
+          <div class="instruction-bar">
+            <b>📝 Instructions:</b> Select room type, enter size, click "Add Room". Drag to arrange. Press <b>Delete</b> to remove. Click <b>"Save All Files"</b> to download JSON, PNG, and TXT.
+          </div>
+
+          <div class="canvas" id="canvas">
+            <!-- Compass -->
+            <div class="compass" id="compass">
+              <div class="north">N</div>
+              <div class="east">E</div>
+              <div class="south">S</div>
+              <div class="west">W</div>
+            </div>
+
+            <!-- Person icon -->
+            <img id="personIcon" class="person-icon"
+              src="https://raw.githubusercontent.com/Yoonjae-Hong/Survey_ver2/76437d43f2a49ee041422c151b7c6ec6c5576320/Assets/person.png"
+              alt="Person">
+          </div>
+        </section>
+      </div>
+
+      <!-- NOTES SECTION (Bottom) -->
+      <section class="notes-section">
+        <h3>📋 Design Notes</h3>
+        <textarea id="notesTextarea" placeholder="Describe your floor plan design: room arrangements, sizes, adjacencies, orientations... (150–250 words)"></textarea>
       </section>
     </main>
   </div>
@@ -608,25 +590,27 @@ const GRID_SIZE = 15;
 const CM_PER_UNIT = 60;
 
 const ROOM_COLORS = {
-  "Living Room":    "rgba(59,130,246,0.25)",
-  "Kitchen":        "rgba(34,197,94,0.25)",
-  "Dining Room":    "rgba(14,165,233,0.25)",
-  "Master Bedroom": "rgba(139,92,246,0.25)",
-  "Guest Bedroom":  "rgba(168,85,247,0.25)",
-  "Bathroom":       "rgba(239,68,68,0.25)",
-  "Others":         "rgba(107,114,128,0.25)"
+  "Living Room":    "rgba(59,130,246,0.3)",
+  "Kitchen":        "rgba(34,197,94,0.3)",
+  "Dining Room":    "rgba(14,165,233,0.3)",
+  "Master Bedroom": "rgba(139,92,246,0.3)",
+  "Guest Bedroom":  "rgba(168,85,247,0.3)",
+  "Bathroom":       "rgba(239,68,68,0.3)",
+  "Storage":        "rgba(251,191,36,0.3)",
+  "Others":         "rgba(107,114,128,0.3)"
 };
 
 const canvas = document.getElementById("canvas");
 const compass = document.getElementById("compass");
 const personIcon = document.getElementById("personIcon");
-const output = document.getElementById("layoutOutput");
 const typeSelect = document.getElementById("customRoomType");
 const labelContainer = document.getElementById("labelContainer");
+const notesTextarea = document.getElementById("notesTextarea");
 
 let shapes = [];
 let selectedId = null;
 let shapeIdCounter = 1;
+let layoutJSON = [];
 
 window.onload = () => {
   canvas.style.backgroundSize = GRID_SIZE + "px " + GRID_SIZE + "px";
@@ -637,8 +621,8 @@ function placePersonIcon() {
   const c = compass.getBoundingClientRect();
   const rect = canvas.getBoundingClientRect();
 
-  let left = (c.left - rect.left) + (c.width / 2) - 20;
-  let top = (c.bottom - rect.top) + 5;
+  let left = (c.left - rect.left) + (c.width / 2) - 15;
+  let top = (c.bottom - rect.top) + 8;
 
   left = Math.round(left / GRID_SIZE) * GRID_SIZE;
   top  = Math.round(top / GRID_SIZE) * GRID_SIZE;
@@ -650,7 +634,7 @@ function placePersonIcon() {
     id: "person",
     roomType: "Person",
     x: left, y: top,
-    width: 40, height: 50,
+    width: 30, height: 40,
     isPerson: true
   });
 
@@ -666,7 +650,10 @@ document.getElementById("addCustomRoomBtn").addEventListener("click", () => {
   const wUnits = +document.getElementById("customWidth").value;
   const hUnits = +document.getElementById("customHeight").value;
 
-  if (wUnits <= 0 || hUnits <= 0) return alert("Invalid size");
+  if (wUnits <= 0 || hUnits <= 0) {
+    alert("⚠️ Please enter valid dimensions (greater than 0)");
+    return;
+  }
 
   const w = wUnits * GRID_SIZE;
   const h = hUnits * GRID_SIZE;
@@ -674,7 +661,10 @@ document.getElementById("addCustomRoomBtn").addEventListener("click", () => {
   let label = type;
   if (type === "Others") {
     label = document.getElementById("customLabelInput").value.trim();
-    if (!label) return alert("Enter label");
+    if (!label) {
+      alert("⚠️ Please enter a custom label");
+      return;
+    }
   }
 
   const rect = canvas.getBoundingClientRect();
@@ -694,7 +684,7 @@ function addShape({ roomType, label, x, y, width, height }) {
   div.style.top = y+"px";
   div.style.width = width+"px";
   div.style.height = height+"px";
-  div.style.background = ROOM_COLORS[roomType] || "rgba(59,130,246,0.25)";
+  div.style.background = ROOM_COLORS[roomType] || "rgba(59,130,246,0.3)";
   div.textContent = label;
 
   canvas.appendChild(div);
@@ -706,7 +696,13 @@ function addShape({ roomType, label, x, y, width, height }) {
 
 function attachMove(el) {
   el.addEventListener("mousedown", e => {
-    selectedId = el.dataset.id;
+    selectedId = el.dataset ? el.dataset.id : el.id;
+
+    document.querySelectorAll('.canvas-shape').forEach(s => s.classList.remove('selected'));
+    
+    if (el.classList && el.classList.contains('canvas-shape')) {
+      el.classList.add('selected');
+    }
 
     const startX = e.clientX;
     const startY = e.clientY;
@@ -753,7 +749,7 @@ document.addEventListener("keydown", e => {
 });
 
 function updateJSON() {
-  const result = shapes
+  layoutJSON = shapes
     .filter(s => !s.isPerson)
     .map(s => ({
       id: s.id,
@@ -764,35 +760,75 @@ function updateJSON() {
       width: (s.width / GRID_SIZE) * CM_PER_UNIT,
       height: (s.height / GRID_SIZE) * CM_PER_UNIT
     }));
-
-  output.value = JSON.stringify(result, null, 2);
 }
 
 document.getElementById("clearCanvasBtn").addEventListener("click", () => {
-  if (!confirm("Clear all rooms?")) return;
+  if (!confirm("⚠️ Clear all rooms?")) return;
   shapes = shapes.filter(s => s.isPerson);
   [...canvas.querySelectorAll(".canvas-shape")].forEach(el => el.remove());
   updateJSON();
 });
 
-document.getElementById("exportJsonBtn").addEventListener("click", async () => {
-  const blob = new Blob([output.value], { type:"application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "layout.json";
-  a.click();
+document.getElementById("exportAllBtn").addEventListener("click", async () => {
+  if (layoutJSON.length === 0) {
+    alert("⚠️ Please add at least one room before saving.");
+    return;
+  }
 
-  const screenshot = await html2canvas(canvas, { backgroundColor:null, scale:2 });
+  const notesText = notesTextarea.value.trim();
+  if (!notesText) {
+    alert("⚠️ Please write design notes before saving.");
+    return;
+  }
+
+  // Save JSON file
+  const jsonBlob = new Blob([JSON.stringify(layoutJSON, null, 2)], { type:"application/json" });
+  const jsonUrl = URL.createObjectURL(jsonBlob);
+  const a1 = document.createElement("a");
+  a1.href = jsonUrl;
+  a1.download = "layout.json";
+  a1.click();
+
+  // Save TXT file
+  const txtBlob = new Blob([notesText], { type:"text/plain" });
+  const txtUrl = URL.createObjectURL(txtBlob);
+  const a3 = document.createElement("a");
+  a3.href = txtUrl;
+  a3.download = "design_notes.txt";
+  a3.click();
+
+  // Save PNG screenshot
+  const screenshot = await html2canvas(canvas, { backgroundColor:"#ffffff", scale:2 });
   screenshot.toBlob((imgBlob) => {
     const pngUrl = URL.createObjectURL(imgBlob);
     const a2 = document.createElement("a");
     a2.href = pngUrl;
     a2.download = "layout.png";
     a2.click();
+    
+    alert("✅ All files saved successfully! (JSON, PNG, TXT)");
   });
 });
-</script>
 
-</body>
-</html>
+// Survey Form Submission
+document.getElementById('surveyForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Collect form data
+  const formData = new FormData(this);
+  const surveyData = {};
+  
+  for (let [key, value] of formData.entries()) {
+    if (surveyData[key]) {
+      if (Array.isArray(surveyData[key])) {
+        surveyData[key].push(value);
+      } else {
+        surveyData[key] = [surveyData[key], value];
+      }
+    } else {
+      surveyData[key] = value;
+    }
+  }
+  
+  console.log("Survey Data:", surveyData);
+  alert('✅ Survey submitted successfully!\n\nDon\'
